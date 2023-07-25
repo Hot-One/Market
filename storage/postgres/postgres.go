@@ -11,11 +11,12 @@ import (
 )
 
 type store struct {
-	db             *pgxpool.Pool
-	category       *CategoryRepo
-	branch         *BranchRepo
-	product        *ProductRepo
-	storage_coming *StorageComingRepo
+	db                     *pgxpool.Pool
+	category               *CategoryRepo
+	branch                 *BranchRepo
+	product                *ProductRepo
+	storage_coming         *StorageComingRepo
+	storage_coming_product *StorageComingProductRepo
 }
 
 func NewConnectionPostgres(cfg *config.Config) (storage.StorageI, error) {
@@ -82,4 +83,13 @@ func (s *store) StorageComing() storage.StorageComingRepoI {
 	}
 
 	return s.storage_coming
+}
+
+func (s *store) StorageComingProduct() storage.StorageComingProductRepoI {
+
+	if s.storage_coming_product == nil {
+		s.storage_coming_product = NewStorageComingProductRepo(s.db)
+	}
+
+	return s.storage_coming_product
 }
