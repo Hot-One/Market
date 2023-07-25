@@ -12,6 +12,7 @@ type StorageI interface {
 	Category() CategoryRepoI
 	Product() ProductRepoI
 	StorageComing() StorageComingRepoI
+	StorageComingProduct() StorageComingProductRepoI
 }
 
 type BranchRepoI interface {
@@ -45,4 +46,7 @@ type StorageComingRepoI interface {
 	GetList(context.Context, *models.StorageComingGetListRequest) (*models.StorageComingGetListResponse, error)
 	Update(context.Context, *models.UpdateStorageComing) (int64, error)
 	Delete(context.Context, *models.StorageComingPrimaryKey) error
+}
+
+type StorageComingProductRepoI interface {
 }

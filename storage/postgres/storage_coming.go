@@ -121,7 +121,6 @@ func (r *StorageComingRepo) GetList(ctx context.Context, req *models.StorageComi
 			created_at,
 			updated_at
 		FROM storage_coming
-		WHERE id = $1
 	`
 
 	if req.Offset > 0 {
